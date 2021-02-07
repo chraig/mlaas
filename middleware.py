@@ -32,8 +32,7 @@ class RequestID(object):
 
     def __call__(self, environ, start_response):
         header_key = "HTTP_{0}".format(self._flask_header_name)
-        environ.setdefault(header_key, "pyaas-" + self._generator_func())
-        # environ.setdefault(header_key, "pyaas-" + self._generator_func())
+        environ.setdefault(header_key, "mlaas-" + self._generator_func())
         req_id = environ[header_key]
         environ["FLASK_REQUEST_ID"] = req_id
 
