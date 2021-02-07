@@ -22,11 +22,7 @@ def get_duration(begin_time: float, fmt_: str = DEFAULT_DURATION_FORMAT) -> str:
 
 
 def get_app_dir(basedir: str = ENV_LOCALAPPDATA, appname: str = DEFAULT_APP_NAME) -> str:
-    """Returns Metris.Python.PythonProcessor appdata dir.
-    
-    .. note:: Creates if it does not exist
-    
-    .. note:: Uses ``%LOCALAPPDATA%`` environment variable
+    """Returns mlaas appdata dir.
     """
     app_dir = os.path.join(basedir, appname)
     try:
