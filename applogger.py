@@ -2,11 +2,17 @@
 import os
 from time import perf_counter
 from logging.config import dictConfig
+from utils.data_dir import get_datadir
 
 
 DEFAULT_DURATION_FORMAT = "{:.3f}"
-ENV_LOCALAPPDATA = os.environ["LOCALAPPDATA"]
+
 DEFAULT_APP_NAME = "MLAAS"
+ENV_LOCALAPPDATA = ""
+if os.name == 'nt':  # Windows
+    ENV_LOCALAPPDATA = os.environ["LOCALAPPDATA"]
+elif os.name == 'posix':
+    ENV_LOCALAPPDATA = os.path.join(get_datadir())
 
 
 def get_duration(begin_time: float, fmt_: str = DEFAULT_DURATION_FORMAT) -> str:
@@ -23,8 +29,10 @@ def get_app_dir(basedir: str = ENV_LOCALAPPDATA, appname: str = DEFAULT_APP_NAME
     .. note:: Uses ``%LOCALAPPDATA%`` environment variable
     """
     app_dir = os.path.join(basedir, appname)
-    if not os.path.isdir(app_dir):
+    try:
         os.makedirs(app_dir)
+    except FileExistsError:
+        pass
     return app_dir
 
 
