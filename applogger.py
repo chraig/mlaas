@@ -7,7 +7,7 @@ from utils.data_dir import get_datadir
 
 DEFAULT_DURATION_FORMAT = "{:.3f}"
 
-DEFAULT_APP_NAME = "MLAAS"
+DEFAULT_APP_NAME = "mlaas"
 ENV_LOCALAPPDATA = ""
 if os.name == 'nt':  # Windows
     ENV_LOCALAPPDATA = os.environ["LOCALAPPDATA"]
@@ -40,7 +40,7 @@ DEFAULT_APP_DIR = get_app_dir()
 DEFAULT_LOGFILE_NAME = os.path.join(DEFAULT_APP_DIR, "{}.log".format(DEFAULT_APP_NAME))
 
 dictConfig({
-    "version": 0,
+    "version": 1,
     "formatters": {
         "default": {
             # (time) (threadname) (thread:id) (logger.level) (
